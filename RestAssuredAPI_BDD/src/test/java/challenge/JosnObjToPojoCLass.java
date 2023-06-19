@@ -1,19 +1,16 @@
 package challenge;
 
-import challenge.StudentDetails;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import static io.restassured.RestAssured.given;
 
-public class JosnObjToPojoCLassDeserialization {
+public class JosnObjToPojoCLass {
 
 	// json object to data -deserialization
 	public static void main(String[] args) throws JsonProcessingException {
+		// also we can add the json string in file
 		String jsonBody="{\n" +
 				"  \"name\": \"Peter Smith\",\n" +
 				"  \"marks\": [\n" +
@@ -41,23 +38,23 @@ public class JosnObjToPojoCLassDeserialization {
 ///////////////desrialization/////////////////////
 
 		ObjectMapper objMapper = new ObjectMapper();
-		//desrialization
 		StudentDetails emp=objMapper.readValue(jsonBody, StudentDetails.class);
+
 		String StudentName=emp.getName();
 
-		List<Mark> Studentmark=emp.getMarks();
+		List<Mark> StudentMark=emp.getMarks();
 
-		int Mathsmarks=Studentmark.get(0).getMark();
-		String MathSub=Studentmark.get(0).getSubject();
-		int Sciencemarks2=Studentmark.get(1).getMark();
-		String ScienceSub=Studentmark.get(1).getSubject();
-		int englishmarks3=Studentmark.get(2).getMark();
-		String EngSub=Studentmark.get(2).getSubject();
-		int historymarks4=Studentmark.get(3).getMark();
-		String historySub=Studentmark.get(3).getSubject();
+		int Mathsmarks=StudentMark.get(0).getMark();
+		String MathSub=StudentMark.get(0).getSubject();
+		int ScienceMarks=StudentMark.get(1).getMark();
+		String ScienceSub=StudentMark.get(1).getSubject();
+		int englishMarks=StudentMark.get(2).getMark();
+		String EngSub=StudentMark.get(2).getSubject();
+		int historyMarks=StudentMark.get(3).getMark();
+		String historySub=StudentMark.get(3).getSubject();
 
-		int totalSubject=Studentmark.size();
-		int avg=(Mathsmarks+Sciencemarks2+englishmarks3+historymarks4)/totalSubject;
+		int totalSubject=StudentMark.size();
+		int avg=(Mathsmarks+ScienceMarks+englishMarks+historyMarks)/totalSubject;
 
 		double studentAvg= emp.getStudentAverage();
 		studentAvg=avg;
@@ -65,12 +62,12 @@ public class JosnObjToPojoCLassDeserialization {
 		boolean studentStatus=emp.getStudentPass();
 
 		if(studentAvg>=50)
-		{
 			studentStatus=true;
-		}
-		else studentStatus=false;
 
-/////////// Serialization///////////////////////////////
+		else
+			studentStatus=false;
+
+////////////////// Serialization///////////////////////////////
 
 		StudentDetails obj = new StudentDetails();
 
@@ -81,18 +78,18 @@ public class JosnObjToPojoCLassDeserialization {
 		mathObj.setSubject(MathSub);
 
 		Mark ScienceObj= new Mark();
-		ScienceObj.setMark(Sciencemarks2);
+		ScienceObj.setMark(ScienceMarks);
 		ScienceObj.setSubject(ScienceSub);
 
 		Mark englishObj= new Mark();
-		englishObj.setMark(englishmarks3);
+		englishObj.setMark(englishMarks);
 		englishObj.setSubject(EngSub);
 
 		Mark historyObj= new Mark();
-		historyObj.setMark(historymarks4);
+		historyObj.setMark(historyMarks);
 		historyObj.setSubject(historySub);
 
-		List<Mark> marks = new ArrayList<Mark>();
+		List<Mark> marks = new ArrayList<>();
 		marks.add(mathObj);
 		marks.add(ScienceObj);
 		marks.add(englishObj);
@@ -104,8 +101,8 @@ public class JosnObjToPojoCLassDeserialization {
 	  obj.setStudentPass(studentStatus);
 
 		ObjectMapper objMapper1 = new ObjectMapper();
-		String json=objMapper1.writerWithDefaultPrettyPrinter().writeValueAsString(obj); // convert into pretty json as string and pass as body
-			System.out.println(json);
+		String response=objMapper1.writerWithDefaultPrettyPrinter().writeValueAsString(obj); // convert into pretty json as string and pass as body
+		System.out.println(response);
 
 	}
 
