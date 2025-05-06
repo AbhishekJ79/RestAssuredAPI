@@ -37,14 +37,18 @@ public class NestedJsonArray {
 	}]
 */
 	public static void main(String[] args) throws JsonProcessingException {
-		
-		Map<String,Object> mp= new HashMap<String, Object>();
-		mp.put("Name", "Abhishek");
-		mp.put("surname", "jadhav");
+
+
+
+		Map<String,Object> mp= new HashMap<String, Object>();   //a
+		mp.put("Name", 1);
+		mp.put("surname", 2);
 		mp.put("age", 123);
 		mp.put("salary", 1253);
 		
-		Map<String,Object> mp1= new HashMap<String, Object>();
+		Map<String,Object> mp1= new HashMap<String, Object>();   //b
+		  mp1.put("a",mp);
+
 		mp1.put("Name", "Pratiksha");
 		mp1.put("surname", "jadhav");
 		mp1.put("age", 321);

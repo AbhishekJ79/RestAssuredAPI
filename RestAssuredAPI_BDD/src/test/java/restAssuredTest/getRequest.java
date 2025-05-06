@@ -29,7 +29,7 @@ public class getRequest {
 			
 		.then()
 		
-	//	.body(JsonSchemaValidator.matchesJsonSchema("./src/test/resources/resquestData/schema.json"))
+		.body(JsonSchemaValidator.matchesJsonSchema("./src/test/resources/resquestData/schema.json"))
 		
 		.statusCode(200)
 			
@@ -42,12 +42,11 @@ public class getRequest {
 		
 		.time(Matchers.lessThan(2000L))
 		 .extract().response();
-		
-	
+
 		//get response
 		  long time=res.time();
 		System.out.println("time:-"+time);
-		
+
 		//convert to string 
 		String respString=res.asString();
 		
@@ -55,7 +54,7 @@ public class getRequest {
 		JsonPath js= new JsonPath(respString);
 		int len=js.getInt("products.size()");
 		System.out.println(len);
-		
+
 		//get value from json path
 		String value=js.getString("products[0].title");	
 		System.out.println(value);

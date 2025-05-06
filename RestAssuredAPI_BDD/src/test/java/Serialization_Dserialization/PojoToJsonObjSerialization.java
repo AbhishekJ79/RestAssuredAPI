@@ -20,7 +20,8 @@ public class PojoToJsonObjSerialization {
 		
 		ObjectMapper objMapper = new ObjectMapper();
 		String json=objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(emp); // convert into pretty json as string and pass as body
-	//	System.out.println(json);
+
+		//	System.out.println(json);
 		//its now converted into json payload and pass as a body
 		
 		given()

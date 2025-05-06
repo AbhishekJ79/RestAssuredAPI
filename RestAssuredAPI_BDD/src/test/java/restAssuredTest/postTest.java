@@ -19,18 +19,20 @@ import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matcher.*;
 
 public class postTest {
-	
+	{
+
+	}
 	
 	//public static HashMap<String,Object> mp= new HashMap<String,Object>();
 	
 	JSONObject mp = new JSONObject();
 	// send request as body
-	//File jsonDataInFile = new File("./src/test/resources/resquestData/request.json");
+//	File jsonDataInFile = new File("./src/test/resources/resquestData/request.json");
+//	 requestBody = jsonDataInFile.path."<value>";
+
 	@BeforeClass
 	public  void PostData()
 	{
-		
-		
 		mp.put("ABhishek", "Name");
 		mp.put("pratiksha", 23);
 		
@@ -51,11 +53,11 @@ public class postTest {
 		.when()
 			.post()
 		.then()
-			.statusCode(200)
+			.statusCode(201)
 			.statusLine("HTTP/1.1 200 OK")
 			
 			.log().all()
-			.assertThat().body("id", Matchers.equalTo(101))
+			.assertThat().body("Message", Matchers.equalTo("successfully created"))
 			.extract().response();
 	
 //	String jsonString=resp.asString();

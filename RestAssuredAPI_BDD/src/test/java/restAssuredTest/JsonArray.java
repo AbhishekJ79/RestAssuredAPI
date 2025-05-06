@@ -19,7 +19,7 @@ public class JsonArray {
 		  "surname" : "jadhav",
 		  "age" : 123,
 		  "salary" : 1253
-	]}
+	}]
 */
 	/*	 array's of json 
 	[{
